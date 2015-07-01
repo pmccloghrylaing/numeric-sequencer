@@ -32,17 +32,6 @@ namespace NumericSequencer.Tests.Services
 		}
 
 		[TestMethod]
-		public void OddSequencer_MapsToString()
-		{
-			Enumerable.Range(1, 20)
-				.Select(new AllSequencer().MapInteger)
-				.ShouldAllBeEquivalentTo(new[]
-				{
-					"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"
-				});
-		}
-
-		[TestMethod]
 		public void EvenSequencer_GeneratesEven()
 		{
 			new EvenSequencer().YieldSequence()
@@ -99,14 +88,6 @@ namespace NumericSequencer.Tests.Services
 		[TestMethod]
 		public void MapItem_FizzBuzz()
 		{
-			var sequencersWithDefaultMapping = new ISequencer[]
-			{
-				new AllSequencer(),
-				new OddSequencer(),
-				new EvenSequencer(),
-				new FibonacciSequencer()
-			};
-
 			Enumerable.Range(1, 20)
 				.Select(new FizzBuzzSequencer().MapInteger)
 				.ShouldAllBeEquivalentTo(new[]
