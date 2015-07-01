@@ -1,0 +1,46 @@
+﻿<!doctype html>
+<html data-ng-app="sequencerApp">
+<head>
+    <title>Numeric Sequence Calculator</title>
+    <link href="/css/site.css" rel="stylesheet" type="text/css" />
+
+    <script src="/js/jquery-1.10.2.js"></script>
+    <script src="/js/angular.js"></script>
+    <script src="/js/app.js"></script>
+</head>
+<body>
+    <main data-ng-controller="SequencerController as model">
+        <h1>Numeric Sequence Calculator</h1>
+        <form name="sequencer" data-ng-submit="model.submit()">
+            <p>
+                <label for="limit-input">
+                    Upper limit
+                </label>
+                <input type="text" id="limit-input" data-ng-model="model.integer" required pattern="\d+" data-ng-class="{ invalid: sequencer.$invalid && !sequencer.$pristine }" />
+            </p>
+            <p class="error" data-ng-show="sequencer.$invalid && !sequencer.$pristine">Input must be a positive integer</p>
+            <p><input type="submit" data-ng-disabled="sequencer.$invalid" value="Calculate Sequences" /></p>
+</form>
+        <article id="results" data-ng-show="model.result">
+            <h2>Sequences</h2>
+            <dl>
+                <dt>All integers up to and including {{ model.requestedInteger }}</dt>
+                <dd>{{ model.result.allSequence.join(', ') }}</dd>
+
+                <dt>Odd integers up to and including {{ model.requestedInteger }}</dt>
+                <dd>{{ model.result.oddSequence.join(', ') }}</dd>
+
+                <dt>Even integers up to and including {{ model.requestedInteger }}</dt>
+                <dd>{{ model.result.evenSequence.join(', ') }}</dd>
+
+                <dt>All integers up to and including {{ model.requestedInteger }},
+                    where 'C' replaces multiple of 3, 'E' replaces multiple of 5 and 'Z' replaces multiple of 15</dt>
+                <dd>{{ model.result.fizzBuzzSequence.join(', ') }}</dd>
+
+                <dt>Fibonacci integers up to and including {{ model.requestedInteger }}</dt>
+                <dd>{{ model.result.fibonacciSequence.join(', ') }}</dd>
+            </dl>
+        </article>
+    </main>
+</body>
+</html>
